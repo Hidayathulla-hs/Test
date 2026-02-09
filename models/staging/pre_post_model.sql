@@ -1,11 +1,9 @@
 {{ config(
     materialized = "incremental",
     incremental_strategy = "append"
+     pre_hook="TRUNCATE TABLE {{ this }}",
 ) }}
 
 SELECT *
-FROM {{ source('source_table_name', 'raw_orders') }}
+FROM {{ source('source_table_name', 'orders') }}
 
-{% if is_incremental() %}
-WHERE updated_at > (SELECT MAX(updated_at) FROM {{ this }})
-{% endif %}

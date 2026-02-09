@@ -9,5 +9,5 @@ sources:
       
       - name: customers
  
-      - name: raw_orders
+      - name: orders
       
