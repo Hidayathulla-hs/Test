@@ -7,7 +7,7 @@ WITH source_data AS (
 
     SELECT *,
            ROW_NUMBER() OVER (
-               PARTITION BY id
+               PARTITION BY order_id
                ORDER BY order_date DESC
            ) AS rn
     FROM {{ source('source_table_name','orders') }}
